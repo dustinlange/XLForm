@@ -34,6 +34,7 @@ NSString *const kSegmentedControl = @"segmentedControl";
 NSString *const kCustom = @"custom";
 NSString *const kInfo = @"info";
 NSString *const kButton = @"button";
+NSString *const kImage = @"image";
 NSString *const kButtonLeftAligned = @"buttonLeftAligned";
 NSString *const kButtonWithSegueId = @"buttonWithSegueId";
 NSString *const kButtonWithSegueClass = @"buttonWithSegueClass";
@@ -73,13 +74,14 @@ NSString *const kButtonWithStoryboardId = @"buttonWithStoryboardId";
     [form addFormSection:section];
     
     // Switch
-    [section addFormRow:[XLFormRowDescriptor formRowDescriptorWithTag:kSwitchBool rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Switch"]];
-    
+    XLFormRowDescriptor * row = [XLFormRowDescriptor formRowDescriptorWithTag:kSwitchBool rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Switch"];
+    [row.cellConfigAtConfigure setObject:[UIColor redColor] forKey:@"switchControl.onTintColor"];
+    [section addFormRow:row];
     // check
     [section addFormRow:[XLFormRowDescriptor formRowDescriptorWithTag:kSwitchCheck rowType:XLFormRowDescriptorTypeBooleanCheck title:@"Check"]];
     
     // step counter
-    XLFormRowDescriptor * row = [XLFormRowDescriptor formRowDescriptorWithTag:kStepCounter rowType:XLFormRowDescriptorTypeStepCounter title:@"Step counter"];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kStepCounter rowType:XLFormRowDescriptorTypeStepCounter title:@"Step counter"];
     row.value = @50;
     [row.cellConfigAtConfigure setObject:@YES forKey:@"stepControl.wraps"];
     [row.cellConfigAtConfigure setObject:@10 forKey:@"stepControl.stepValue"];
@@ -102,6 +104,10 @@ NSString *const kButtonWithStoryboardId = @"buttonWithStoryboardId";
     [row.cellConfigAtConfigure setObject:@(4) forKey:@"steps"];
     [section addFormRow:row];
     
+    // Image
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kImage rowType:XLFormRowDescriptorTypeImage title:@"Image"];
+    row.value = [UIImage imageNamed:@"default_avatar"];
+    [section addFormRow:row];
 
     // Info cell
     XLFormRowDescriptor *infoRowDescriptor = [XLFormRowDescriptor formRowDescriptorWithTag:kInfo rowType:XLFormRowDescriptorTypeInfo];
@@ -122,7 +128,7 @@ NSString *const kButtonWithStoryboardId = @"buttonWithStoryboardId";
     
     // Left Button
     XLFormRowDescriptor * buttonLeftAlignedRow = [XLFormRowDescriptor formRowDescriptorWithTag:kButtonLeftAligned rowType:XLFormRowDescriptorTypeButton title:@"Button with Block"];
-    [buttonLeftAlignedRow.cellConfig setObject:@(NSTextAlignmentLeft) forKey:@"textLabel.textAlignment"];
+    [buttonLeftAlignedRow.cellConfig setObject:@(NSTextAlignmentNatural) forKey:@"textLabel.textAlignment"];
     [buttonLeftAlignedRow.cellConfig setObject:@(UITableViewCellAccessoryDisclosureIndicator) forKey:@"accessoryType"];
     
     __typeof(self) __weak weakSelf = self;
@@ -168,7 +174,7 @@ NSString *const kButtonWithStoryboardId = @"buttonWithStoryboardId";
     
     // Button with SegueId
     XLFormRowDescriptor * buttonWithSegueId = [XLFormRowDescriptor formRowDescriptorWithTag:kButtonWithSegueClass rowType:XLFormRowDescriptorTypeButton title:@"Button with Segue Idenfifier"];
-    buttonWithSegueId.action.formSegueIdenfifier = @"MapViewControllerSegue";
+    buttonWithSegueId.action.formSegueIdentifier = @"MapViewControllerSegue";
     [section addFormRow:buttonWithSegueId];
     
     
