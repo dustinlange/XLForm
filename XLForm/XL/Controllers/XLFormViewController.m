@@ -834,6 +834,16 @@
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return [self.form.formSections[section] sectionHeaderHeight];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return [self.form.formSections[section] sectionFooterHeight];
+}
+
 #pragma mark - UITextFieldDelegate
 
 

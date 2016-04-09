@@ -51,6 +51,8 @@ typedef NS_ENUM(NSUInteger, XLFormSectionInsertMode) {
 @property (nullable) XLFormRowDescriptor * multivaluedRowTemplate;
 @property (readonly, nullable) XLFormRowDescriptor * multivaluedAddButton;
 @property (nonatomic, nullable) NSString * multivaluedTag;
+@property (nonatomic, assign) CGFloat sectionHeaderHeight;
+@property (nonatomic, assign) CGFloat sectionFooterHeight;
 
 @property (weak, null_unspecified) XLFormDescriptor * formDescriptor;
 
