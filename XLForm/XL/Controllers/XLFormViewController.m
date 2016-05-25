@@ -844,6 +844,11 @@
     return [self.form.formSections[section] sectionFooterHeight];
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    return [self.form.formSections[section] sectionHeaderView];
+}
+
 #pragma mark - UITextFieldDelegate
 
 
